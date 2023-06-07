@@ -18,9 +18,9 @@ class InverterData:
 
     @staticmethod
     def from_response(data: str) -> InverterData:
-        """Return Inverter object from the Omnik Inverter response.
+        """Return Inverter object from the Solis Inverter response.
         Args:
-            data: The CGI (webscraping) data from the Omnik Inverter.
+            data: The data from the Solis Inverter CGI.
         Returns:
             An Inverter object.
             :rtype: object
