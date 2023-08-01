@@ -28,9 +28,9 @@ def fetch_data() -> InverterData:
         with httpx.Client(auth=BASIC_AUTH) as client:
             response = fetch(client=client)
             logging.info(f"Response ${response.text}")
-    except (httpcore.ConnectTimeout, httpx.ConnectTimeout) as error:
+    except (httpcore.ConnectTimeout, httpx.ConnectTimeout, httpx.ConnectError) as error:
         data = InverterData.timeout_value()
-        logging.warning(f"Connect Timeout.")
+        logging.warning(f"Can not fetch inverter data - assuming possible offline due to no sun.")
     else:
         data = InverterData.from_response(response.text)
         logging.info(f"Current power: {data.current_power}")
